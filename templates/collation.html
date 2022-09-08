@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5 my-5">
+
+    
+    <div id="alert-box"></div>
+    <form action="" id="collation-form">
+        {% csrf_token %}
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+        <div class="row mb-4 ">
+            <div class="col col-12 col-lg-6 my-3">
+                <div class="form-outline">
+                    <div class="ui floating labeled icon dropdown button col-12 col-lg-12 col-md-12" id="regions">
+                        <input type="hidden" name="" id="region">
+                        <i class="add world icon"></i>
+                        <span class="text" id="region-text">Select Region</span>
+                        <div class="menu" id="region-dropdown">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-12 col-lg-6  my-3">
+                <div class="form-outline">
+                    <div class="ui floating labeled icon dropdown search button col-12 col-lg-12 col-md-12"
+                        id="constituencies">
+                        <input type="hidden" name="" id="constituency">
+                        <i class="add world icon"></i>
+                        <span class="text" id="constituency-text">Select Constituency</span>
+                        <div class="menu" id="constituency-dropdown">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row mb-4 ">
+            <div class="col col-12 col-lg-4 my-3">
+                <div class="col-12">
+                    <label class="visually-hidden" for="inlineFormInputGroupUsername">NDC Votes</label>
+                    <div class="input-group">
+                        <div class="input-group-text"><img
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnmJPIbu-w4F69pyxI1rAFiKzgRdJOkYo-fRJ6qnM&s"
+                                alt="" width="50" height="50"></div>
+                        <input type="text" class="form-control" id="ndc" placeholder="NDC Votes" />
+                    </div>
+                </div>
+            </div>
+            <div class="col col-12 col-lg-4 my-3">
+                <div class="col-12">
+                    <label class="visually-hidden" for="inlineFormInputGroupUsername">NPP Votes</label>
+                    <div class="input-group">
+                        <div class="input-group-text"><img
+                                src="https://citinewsroom.com/wp-content/uploads/2019/07/npp-logo.jpg" alt="" width="50"
+                                height="50"></div>
+                        <input type="text" class="form-control" id="npp" placeholder="NPP Votes" />
+                    </div>
+                </div>
+            </div>
+            <div class="col col-12 col-lg-4 my-3">
+                <div class="col-12">
+                    <label class="visually-hidden" for="inlineFormInputGroupUsername">Other Votes</label>
+                    <div class="input-group">
+                        <div class="input-group-text"><img src="https://cdn.ghanaweb.com/imagelib/pics/977/97706614.jpg"
+                                alt="" width="50" height="50"></div>
+                        <input type="text" class="form-control" id="other" placeholder="Other Votes" />
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div id="submit-btn" style="display: none;">
+            <button type="submit" class="btn btn-success rounded-pill col-12 col-md-6 col-lg-6 py-3 mb-4">
+                <b>Submit</b> </button>
+        </div>
+    </form>
+
+    <div class="bg-primary py-4 my-5 h2 text-light text-light" style="text-align:center;" id="banner">
+
+    </div>
+
+    <div class="row mb-4 ">
+        <div class="col col-2 col-lg-2 ">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnmJPIbu-w4F69pyxI1rAFiKzgRdJOkYo-fRJ6qnM&s"
+                alt="" class="img" >
+        </div>
+        <div class="col col-10 col-lg-10  ">
+            <div class="progress">
+                <div class="progress-bar text-dark" role="progressbar" aria-label="Example with label" style="
+                background: rgb(201,8,33);
+        background: linear-gradient(180deg, rgba(201,8,33,1) 0%, rgba(255,255,255,1) 53%, rgba(0,97,49,1) 100%);"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="ndc-bar">25%</div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4 ">
+        <div class="col col-2 col-lg-2 ">
+            <img src="https://citinewsroom.com/wp-content/uploads/2019/07/npp-logo.jpg" alt="" class="img" >
+        </div>
+        <div class="col col-10 col-lg-10  ">
+            <div class="progress" >
+                <div class="progress-bar text-dark" role="progressbar" aria-label="Example with label" style="
+                background: rgb(201,8,33);
+        background: linear-gradient(180deg, rgba(201,8,33,1) 0%, rgba(255,255,255,1) 53%, rgba(18,46,118,1) 100%);"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="npp-bar">25%</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4 ">
+        <div class="col col-2 col-lg-2 ">
+            <img src="https://cdn.ghanaweb.com/imagelib/pics/977/97706614.jpg" alt="" class="img" 
+                >
+        </div>
+        <div class="col col-10 col-lg-10  ">
+            <div class="progress" >
+                <div class="progress-bar bg-danger" role="progressbar" aria-label="Example with label" 
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="other-bar">25%</div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<style>
+    @media only screen and (min-width: 600px) {
+        .img {
+          width: 150px;
+          height: 150px
+        }
+        .progress{
+            height: 150px;
+        }
+      }
+    @media only screen and (max-width: 600px) {
+        .img {
+          width: 50px;
+          height: 50px
+        }
+        .progress{
+            height: 50px;
+        }
+      }
+</style>
+{% endblock content %}
+{% block scripts %}
+
+<script>
+    const regionDropdown = document.getElementById("region-dropdown")
+    const constituencyDropdown = document.getElementById("constituency-dropdown")
+    var regionInput = document.getElementById('regions');
+    var cosntituencyInput = document.getElementById('constituencies');
+    const constituencyText = document.getElementById('constituency-text')
+    const regionText = document.getElementById('region-text')
+
+    const submitBtn = document.getElementById('submit-btn')
+
+    const collationForm = document.getElementById('collation-form')
+    const csrf_token = document.getElementsByName('csrfmiddlewaretoken')[0].value
+    const alert = document.getElementById("alert-box")
+
+    var sRegion
+    var sConstituency
+
+    const npp = document.getElementById('npp')
+    const ndc = document.getElementById('ndc')
+    const other = document.getElementById('other')
+
+    const ndcBar = document.getElementById('ndc-bar')
+    const nppBar = document.getElementById('npp-bar')
+    const otherBar = document.getElementById('other-bar')
+
+    const banner = document.getElementById('banner')
+
+    $.ajax({
+        url: `${location.origin}/constituency/regions/`,
+        type: 'GET',
+        dataType: 'json', // added data type
+        success: function (response) {
+            console.log(response.date)
+            constData = response.data
+            constData.map(item => {
+                const option = document.createElement("div")
+                option.classList.add('item', 'ui', 'small')
+                option.setAttribute("data-value", item.regional_code)
+                option.innerText = item.regional_name
+                regionDropdown.appendChild(option)
+            })
+        }
+    });
+
+    showPercentages()
+    regionInput.addEventListener('change', e => {
+        sRegion = e.target.value
+        const selectedRegion = e.target.value
+        constituencyDropdown.innerHTML = ""
+        alert.innerHTML = ""
+        constituencyText.innerHTML = "Select Constituency"
+        constituencyText.classList.add("default")
+
+        $.ajax({
+            url: `${location.origin}/constituency/constituencies/${selectedRegion}`,
+            type: 'GET',
+            dataType: 'json', // added data type
+            success: function (response) {
+                constData = response.data
+                constData.map(item => {
+                    const option = document.createElement("div")
+                    option.classList.add('item', 'text-sm')
+                    option.setAttribute("data-value", item.constituency_code)
+                    option.innerText = item.constituency_name
+                    constituencyDropdown.appendChild(option)
+                })
+            }
+        });
+    });
+
+    //shows the submit when the constituency is selected
+    cosntituencyInput.addEventListener('change', e => {
+        sConstituency = e.target.value
+        submitBtn.style.display = 'block'
+
+    })
+
+
+    collationForm.addEventListener('submit', e => {
+        e.preventDefault()
+        console.log(sRegion)
+        console.log(sConstituency)
+        $.ajax({
+            type: "POST",
+            url: "create_collation/",
+            data: {
+                'csrfmiddlewaretoken': csrf_token,
+                'region': sRegion,
+                'constituency': sConstituency,
+                'ndc': ndc.value,
+                'npp': npp.value,
+                'other': other.value,
+            },
+            success: function (response) {
+                console.log(response)
+                alert.innerHTML = `
+                                <div class="ui positive message">
+                                    <i class="close icon"></i>
+                                    <div class="header">
+                                    Success
+                                    </div>
+                                    <p>Added ${response.created}</p>
+                                </div>
+                                    `
+                submitBtn.style.display = "none"
+                ndc.value = ""
+                npp.value = ""
+                other.value = ""
+                constituencyText.innerHTML = "Select Constituency"
+                showPercentages()
+            },
+            error: function (error) {
+                console.log("ERROR:" + error);
+                alert.innerHTML = `
+                                <div class="ui negative message">
+                                    <i class="close icon"></i>
+                                    <div class="header">
+                                    Warning
+                                    </div>
+                                    <p>Something Went Wrong
+                                </p></div>`
+            }
+        });
+    })
+
+    function showPercentages() {
+        $.ajax({
+            url: 'votes/',
+            type: 'GET',
+            dataType: 'json', // added data type
+            success: function (response) {
+                constData = response.data
+                ndcBar.innerHTML = `${constData.ndc.toFixed(2)}%`
+                ndcBar.style.width = `${constData.ndc.toFixed(2)}%`
+                nppBar.innerHTML = `${constData.npp.toFixed(2)}%`
+                nppBar.style.width = `${constData.npp.toFixed(2)}%`
+                otherBar.innerHTML = `${constData.other.toFixed(2)}%`
+                otherBar.style.width = `${constData.other.toFixed(2)}%`
+
+                banner.innerHTML = `<b>Total Votes :    ${constData.total_votes.toLocaleString()} Votes<b/>`
+            }
+        });
+    }
+</script>
+{% endblock scripts %}
